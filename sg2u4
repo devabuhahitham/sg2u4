@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Routines, Hobbies & Abilities - Interactive Practice</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Nunito:wght@400;600;800&display=swap');
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f8fafc;
+        }
+        .arabic {
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        /* 3D Flip Styles */
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+        
+        .flashcard-inner {
+            transition: transform 0.4s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+
+        .fade-in { animation: fadeIn 0.4s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="text-slate-800 pb-20">
+
+    <!-- Header / HUD -->
+    <header class="bg-indigo-600 text-white p-4 sticky top-0 z-50 shadow-md flex justify-between items-center">
+        <div>
+            <h1 class="text-2xl font-bold">Routines, Hobbies & Abilities</h1>
+            <p class="text-sm opacity-80">Learn -> Memorize -> Test</p>
+        </div>
+        <div class="text-right bg-indigo-800 px-4 py-2 rounded-lg">
+            <p class="text-xs uppercase text-indigo-200">Score</p>
+            <p class="font-black text-xl"><span id="xp-display">0</span> XP</p>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto p-4 mt-6 space-y-10">
+
+        <!-- SECTION 1: EXPLANATIONS (STUDY) - ARABIC -->
+        <section class="bg-white rounded-2xl shadow-sm p-6 border border-slate-200 arabic" dir="rtl">
+            <h2 class="text-2xl font-bold text-indigo-700 mb-4 flex items-center gap-2">
+                <span>📚</span> 1. الشرح والقواعد (Grammar & Expressions Guide)
+            </h2>
+            <div class="space-y-4 text-sm md:text-base text-right">
+                
+                <!-- Adverbs of Frequency & Routines -->
+                <div class="bg-indigo-50 p-4 rounded-xl">
+                    <h3 class="font-bold text-indigo-900 text-lg border-b border-indigo-200 pb-2 mb-2" dir="ltr">1. Adverbs of Frequency & Daily Activities (ظروف التكرار والأنشطة)</h3>
+                    <p class="mb-2 text-slate-700">تُستخدم ظروف التكرار لوصف مدى انتظام الأنشطة اليومية، وغالباً ما تأتي قبل الفعل الأساسي.</p>
+                    <ul class="list-disc pr-5 space-y-3">
+                        <li>
+                            <strong>الترتيب:</strong> Subject + (always, usually, often, sometimes, seldom, never) + Verb.
+                            <div class="text-indigo-700 mt-1 bg-indigo-100/50 p-2 rounded inline-block" dir="ltr"><em>Example:</em> I <strong>always</strong> work out. / She <strong>seldom</strong> plays board games.</div>
+                        </li>
+                        <li>
+                            <strong>السؤال عن التكرار (How often):</strong> نسأل عن عدد مرات فعل الشيء وتعبيرات التكرار مثل (once a week, twice a month).
+                            <div class="text-indigo-700 mt-1 bg-indigo-100/50 p-2 rounded inline-block" dir="ltr"><em>Example:</em> <strong>How often</strong> do you go online? — Once a week.</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Abilities (Know how to) -->
+                <div class="bg-emerald-50 p-4 rounded-xl">
+                    <h3 class="font-bold text-emerald-900 text-lg border-b border-emerald-200 pb-2 mb-2" dir="ltr">2. Talk about Abilities: Know how to (التحدث عن القدرات)</h3>
+                    <p class="mb-2 text-slate-700">نستخدم الصيغة (know how to) أو (don't know how to) للتعبير عن معرفة أو عدم معرفة مهارة معينة.</p>
+                    <ul class="list-disc pr-5 space-y-3">
+                        <li>
+                            <strong>القاعدة والأمثلة:</strong>
+                            <div class="text-emerald-700 mt-1 bg-emerald-100/50 p-2 rounded inline-block" dir="ltr"><em>Example:</em> I <strong>know how to</strong> cook. / He <strong>doesn't know how to</strong> draw.</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Gerunds and Infinitives -->
+                <div class="bg-purple-50 p-4 rounded-xl">
+                    <h3 class="font-bold text-purple-900 text-lg border-b border-purple-200 pb-2 mb-2" dir="ltr">3. Gerunds and Infinitives after Verbs (أسماء الأفعال والمصادر)</h3>
+                    <p class="mb-2 text-slate-700">بعد بعض الأفعال نستخدم اسم الفعل (gerund with -ing) أو المصدر بـ (to).</p>
+                    <ul class="list-disc pr-5 space-y-3">
+                        <li>
+                            <strong>أمثلة:</strong>
+                            <div class="text-purple-700 mt-1 bg-purple-100/50 p-2 rounded inline-block" dir="ltr"><em>Example:</em> I practice <strong>climbing</strong>. / I want <strong>to paint</strong>.</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Real Talk -->
+                <div class="bg-amber-50 p-4 rounded-xl">
+                    <h3 class="font-bold text-amber-900 text-lg border-b border-amber-200 pb-2 mb-2" dir="ltr">4. Real Talk (عبارات المحادثة الحقيقية)</h3>
+                    <ul class="list-disc pr-5 space-y-2">
+                        <li><strong>I see:</strong> أفهم ذلك / هكذا إذن.</li>
+                        <li><strong>Stuff like that:</strong> وأشياء شبيهة بذلك.</li>
+                        <li><strong>You mean, ... ?:</strong> تقصد أن...؟</li>
+                        <li><strong>You must come along ... sometime:</strong> يجب أن تأتي معنا في المرة القادمة / قريباً.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: ANKI-STYLE FLASHCARDS -->
+        <section class="bg-white rounded-2xl shadow-sm p-6 border border-slate-200 flex flex-col items-center">
+            <div class="w-full">
+                <h2 class="text-2xl font-bold text-indigo-700 mb-2 flex items-center gap-2">
+                    <span>🎴</span> 2. Vocab Deck (Spaced Repetition)
+                </h2>
+                <p class="text-slate-500 mb-6 text-sm">Read the word, expression, or phrase, think of the meaning, then click to flip. Rate yourself to cycle to the next card.</p>
+            </div>
+
+            <!-- Single Card View -->
+            <div id="anki-card" class="flashcard w-full max-w-sm h-64 cursor-pointer perspective-1000 mb-6" onclick="flipCard()">
+                <div class="flashcard-inner relative w-full h-full text-center shadow-lg rounded-2xl">
+                    <!-- Front (English) -->
+                    <div class="absolute w-full h-full backface-hidden bg-gradient-to-br from-indigo-500 to-purple-600 text-white rounded-2xl flex flex-col justify-center items-center p-6 border-4 border-indigo-100">
+                        <span id="fc-type" class="text-sm uppercase tracking-widest text-indigo-200 mb-2 font-bold"></span>
+                        <span id="fc-en" class="text-3xl font-bold"></span>
+                        <p class="text-indigo-200 mt-6 text-sm animate-pulse">Click to flip</p>
+                    </div>
+                    <!-- Back (Arabic) -->
+                    <div class="absolute w-full h-full backface-hidden bg-white text-indigo-900 rounded-2xl flex flex-col justify-center items-center p-6 rotate-y-180 arabic border-4 border-indigo-200">
+                        <span id="fc-ar" class="text-3xl font-bold text-center" dir="rtl"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Anki Controls -->
+            <div id="anki-controls" class="hidden w-full max-w-sm grid grid-cols-4 gap-2 arabic" dir="rtl">
+                <button onclick="nextCard(0)" class="bg-red-100 text-red-700 font-bold py-2 rounded border border-red-300 hover:bg-red-200 transition">مجدداً</button>
+                <button onclick="nextCard(1)" class="bg-orange-100 text-orange-700 font-bold py-2 rounded border border-orange-300 hover:bg-orange-200 transition">صعب</button>
+                <button onclick="nextCard(2)" class="bg-green-100 text-green-700 font-bold py-2 rounded border border-green-300 hover:bg-green-200 transition">جيد</button>
+                <button onclick="nextCard(3)" class="bg-blue-100 text-blue-700 font-bold py-2 rounded border border-blue-300 hover:bg-blue-200 transition">سهل</button>
+            </div>
+            <p id="deck-progress" class="text-slate-400 mt-4 text-sm font-bold arabic"></p>
+        </section>
+
+        <!-- SECTION 3: ADAPTIVE GRAMMAR -->
+        <section class="bg-white rounded-2xl shadow-sm p-6 border border-slate-200">
+            <h2 class="text-2xl font-bold text-indigo-700 mb-2 flex items-center gap-2">
+                <span>🎯</span> 3. Adaptive Grammar Quiz
+            </h2>
+            <p class="mb-6 text-slate-500 text-sm">Answer correctly to advance. Mistakes will show you an explanation and shuffle the question back into the deck.</p>
+            
+            <div id="grammar-ui" class="bg-slate-50 p-6 rounded-xl border border-slate-200 fade-in">
+                <p class="text-sm font-bold text-indigo-500 uppercase tracking-wide mb-2" id="g-progress">Question 1</p>
+                <p class="text-xl font-bold mb-6" id="g-question"></p>
+                <div class="flex flex-col gap-3" id="g-options">
+                    <!-- Options injected here -->
+                </div>
+                <div id="g-feedback" class="mt-4 hidden p-4 rounded-lg arabic text-right text-lg border" dir="rtl"></div>
+                <button id="g-next-btn" onclick="nextGrammarQ()" class="mt-4 hidden w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg font-bold shadow transition">Next Question</button>
+            </div>
+        </section>
+
+        <!-- SECTION 4: ADAPTIVE WRITING -->
+        <section class="bg-white rounded-2xl shadow-sm p-6 border border-slate-200 mb-10">
+            <h2 class="text-2xl font-bold text-indigo-700 mb-2 flex items-center gap-2">
+                <span>✍️</span> 4. Sentence Transformation & Writing
+            </h2>
+            <p class="mb-6 text-slate-500 text-sm">Rewrite the sentence accurately based on the prompt instructions.</p>
+
+            <div id="writing-ui" class="bg-slate-50 p-6 rounded-xl border border-slate-200 fade-in">
+                <p class="text-sm font-bold text-indigo-500 uppercase tracking-wide mb-2" id="w-progress">Task 1</p>
+                <div class="mb-4">
+                    <span class="inline-block bg-slate-200 text-slate-700 text-xs px-2 py-1 rounded font-bold uppercase mb-2">Original</span>
+                    <p class="text-lg font-medium" id="w-prompt"></p>
+                </div>
+                <p class="text-indigo-600 font-bold mb-4" id="w-instruction"></p>
+                
+                <input type="text" id="w-input" class="w-full p-4 text-lg border-2 border-slate-300 rounded-lg mb-4 focus:outline-none focus:border-indigo-500" placeholder="Type your sentence here..." autocomplete="off">
+                
+                <button id="w-submit-btn" onclick="checkWriting()" class="w-full bg-slate-800 hover:bg-slate-900 text-white py-3 rounded-lg font-bold shadow transition">Submit Check</button>
+                
+                <div id="w-feedback" class="mt-4 hidden p-4 rounded-lg arabic text-right text-lg border" dir="rtl"></div>
+                <button id="w-next-btn" onclick="nextWritingTask()" class="mt-4 hidden w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg font-bold shadow transition">Next Task</button>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // System
+        let xp = 0;
+        function addXP(amount) {
+            xp += amount;
+            document.getElementById('xp-display').innerText = xp;
+        }
+
+        // --- VOCABULARY DECK LOGIC (ANKI STYLE) ---
+        let vocabDeck = [
+            { en: "board game", ar: "لعبة لوحية", type: "Noun" },
+            { en: "current events", ar: "الأحداث الجارية", type: "Noun" },
+            { en: "dieting", ar: "اتباع حمية غذائية", type: "Noun" },
+            { en: "food court", ar: "ساحة المطاعم", type: "Noun" },
+            { en: "indoor climbing", ar: "التسلق الداخلي", type: "Noun" },
+            { en: "leisure", ar: "وقت الفراغ / الاستجمام", type: "Noun" },
+            { en: "pastime", ar: "هواية / تسلية", type: "Noun" },
+            { en: "physical fitness", ar: "اللياقة البدنية", type: "Noun" },
+            { en: "text message", ar: "رسالة نصية", type: "Noun" },
+            { en: "video game", ar: "لعبة فيديو", type: "Noun" },
+            { en: "climb", ar: "يتسلق", type: "Verb" },
+            { en: "cook", ar: "يَطْبُخ", type: "Verb" },
+            { en: "draw", ar: "يَرْسُم", type: "Verb" },
+            { en: "exercise", ar: "يتمرن / يمارس الرياضة", type: "Verb" },
+            { en: "hang out", ar: "يتجول / يقضي وقتاً مع الأصدقاء", type: "Verb" },
+            { en: "go online", ar: "يتصفح الإنترنت", type: "Verb" },
+            { en: "meet", ar: "يُقابل", type: "Verb" },
+            { en: "paint", ar: "يَرْسُم (بالألوان)", type: "Verb" },
+            { en: "play (a sport)", ar: "يَلعب رياضه", type: "Verb" },
+            { en: "practice", ar: "يُمارس / يتدرّب", type: "Verb" },
+            { en: "receive", ar: "يَسْتَقْبِل", type: "Verb" },
+            { en: "send", ar: "يُرْسِل", type: "Verb" },
+            { en: "work out", ar: "يتمرن بجد", type: "Verb" },
+            { en: "dangerous", ar: "خَطِير", type: "Adjective" },
+            { en: "popular", ar: "محبوب / شائِع", type: "Adjective" },
+            { en: "relaxing", ar: "مُريح / مُسترخٍ", type: "Adjective" },
+            { en: "safe", ar: "آمِن", type: "Adjective" },
+            { en: "unusual", ar: "غَيْر مألوف", type: "Adjective" },
+            { en: "always", ar: "دائماً (100%)", type: "Adverb of frequency" },
+            { en: "never", ar: "أبداً (0%)", type: "Adverb of frequency" },
+            { en: "often", ar: "غالباً", type: "Adverb of frequency" },
+            { en: "seldom", ar: "نادراً", type: "Adverb of frequency" },
+            { en: "sometimes", ar: "أحياناً", type: "Adverb of frequency" },
+            { en: "usually", ar: "عادةً", type: "Adverb of frequency" },
+            { en: "Know how to", ar: "يعرف كيف يـ...", type: "Ability Expression" },
+            { en: "Don't know how to", ar: "لا يعرف كيف يـ...", type: "Ability Expression" },
+            { en: "I see", ar: "أفهم ذلك", type: "Real Talk" },
+            { en: "Stuff like that", ar: "وأشياء شبيهة بذلك", type: "Real Talk" },
+            { en: "You mean, ... ?", ar: "تقصد أن...؟", type: "Real Talk" },
+            { en: "You must come along ... sometime", ar: "يجب أن تأتي معنا في المرة القادمة", type: "Real Talk" }
+        ];
+        
+        let currentVocabIndex = 0;
+        let isCardFlipped = false;
+        let isProcessingFlip = false; 
+
+        function loadVocabCardText() {
+            if(vocabDeck.length === 0) {
+                document.getElementById('fc-en').innerText = "Deck Finished!";
+                document.getElementById('fc-ar').innerText = "ممتاز! أنهيت كل الكلمات";
+                document.getElementById('fc-type').innerText = "Done";
+                document.getElementById('deck-progress').innerText = "";
+                return;
+            }
+            let card = vocabDeck[currentVocabIndex];
+            document.getElementById('fc-en').innerText = card.en;
+            document.getElementById('fc-ar').innerText = card.ar;
+            document.getElementById('fc-type').innerText = card.type;
+            document.getElementById('deck-progress').innerText = `الباقي في الحزمة: ${vocabDeck.length} بطاقات`;
+        }
+
+        function loadVocabCard() {
+            loadVocabCardText();
+            const cardEl = document.getElementById('anki-card');
+            cardEl.classList.remove('flipped');
+            isCardFlipped = false;
+            document.getElementById('anki-controls').classList.add('hidden');
+        }
+
+        function flipCard() {
+            if(!isCardFlipped && vocabDeck.length > 0 && !isProcessingFlip) {
+                document.getElementById('anki-card').classList.add('flipped');
+                document.getElementById('anki-controls').classList.remove('hidden');
+                isCardFlipped = true;
+            }
+        }
+
+        function nextCard(rating) {
+            if (isProcessingFlip) return;
+            isProcessingFlip = true; 
+
+            let card = vocabDeck.splice(currentVocabIndex, 1)[0];
+            
+            if (rating === 0) {
+                vocabDeck.splice(Math.floor(vocabDeck.length/2), 0, card); 
+            } else if (rating === 1) {
+                vocabDeck.push(card); 
+            } else {
+                addXP(rating === 3 ? 5 : 3); 
+            }
+
+            if(currentVocabIndex >= vocabDeck.length) {
+                currentVocabIndex = 0;
+            }
+            
+            const cardEl = document.getElementById('anki-card');
+            cardEl.classList.remove('flipped');
+            document.getElementById('anki-controls').classList.add('hidden');
+            isCardFlipped = false;
+
+            setTimeout(() => {
+                loadVocabCardText();
+                isProcessingFlip = false; 
+            }, 250); 
+        }
+
+        // --- ADAPTIVE GRAMMAR LOGIC ---
+        let grammarPool = [
+            { q: "I _______ work out at the gym before going to work.", opts: ["always", "always do", "am always"], ans: 0, fb: "ظرف التكرار (always) يوضع قبل الفعل الأساسي مباشرة." },
+            { q: "She _______ how to cook healthy meals.", opts: ["know", "knows", "knowing"], ans: 1, fb: "مع الضمير المفرد الغائب (She)، نضيف s لتصبح الفعل (knows how to)." },
+            { q: "How _______ do you visit the food court?", opts: ["many", "often", "long"], ans: 1, fb: "نسأل عن عدد مرات تكرار الفعل باستخدام أداة الاستفهام (How often)." },
+            { q: "He enjoys _______ board games with friends.", opts: ["play", "to play", "playing"], ans: 2, fb: "بعد الفعل enjoy نستخدم دائماً اسم الفعل المضاف إليه (ing) أي gerund." },
+            { q: "They _______ send text messages; they prefer calling.", opts: ["always", "never", "usually"], ans: 1, fb: "بما أنهم يفضلون الاتصال، فهم لا يرسلون رسائل نصية أبداً (never)." },
+            { q: "Do you know how _______ indoor climbing?", opts: ["do", "to do", "doing"], ans: 1, fb: "بعد التعبير know how نستخدم المصدر المتبوع بـ to (know how to do)." }
+        ];
+        
+        let currentGrammarQ = null;
+        let gTotal = grammarPool.length;
+        let gSolved = 0;
+
+        function loadGrammarQ() {
+            const ui = document.getElementById('grammar-ui');
+            ui.classList.remove('fade-in'); void ui.offsetWidth; ui.classList.add('fade-in'); 
+            
+            if(grammarPool.length === 0) {
+                ui.innerHTML = `<h3 class="text-2xl font-bold text-green-600 text-center py-10">Grammar Complete! 🏆</h3>`;
+                return;
+            }
+
+            let randomIndex = Math.floor(Math.random() * grammarPool.length);
+            currentGrammarQ = grammarPool[randomIndex];
+            grammarPool.splice(randomIndex, 1); 
+            
+            document.getElementById('g-progress').innerText = `Grammar Progress: ${gSolved}/${gTotal}`;
+            document.getElementById('g-question').innerText = currentGrammarQ.q;
+            
+            let optsHtml = '';
+            currentGrammarQ.opts.forEach((opt, idx) => {
+                optsHtml += `
+                    <label class="flex items-center gap-3 p-4 rounded-lg border-2 border-slate-200 cursor-pointer hover:bg-indigo-50 hover:border-indigo-300 transition" onclick="selectGrammar(${idx})">
+                        <input type="radio" name="g_opt" value="${idx}" class="hidden">
+                        <span class="w-6 h-6 rounded-full border-2 border-slate-300 flex items-center justify-center pointer-events-none" id="circle-${idx}"></span>
+                        <span class="text-lg pointer-events-none">${opt}</span>
+                    </label>
+                `;
+            });
+            document.getElementById('g-options').innerHTML = optsHtml;
+            document.getElementById('g-feedback').classList.add('hidden');
+            document.getElementById('g-next-btn').classList.add('hidden');
+        }
+
+        function selectGrammar(idx) {
+            const labels = document.getElementById('g-options').querySelectorAll('label');
+            labels.forEach(l => l.style.pointerEvents = 'none');
+
+            const isCorrect = (idx === currentGrammarQ.ans);
+            const feedbackBox = document.getElementById('g-feedback');
+            const nextBtn = document.getElementById('g-next-btn');
+            const circle = document.getElementById(`circle-${idx}`);
+
+            feedbackBox.classList.remove('hidden');
+            nextBtn.classList.remove('hidden');
+
+            if (isCorrect) {
+                circle.classList.add('bg-green-500', 'border-green-500');
+                feedbackBox.className = "mt-4 p-4 rounded-lg arabic text-right text-lg border bg-green-50 text-green-800 border-green-300 block";
+                feedbackBox.innerHTML = `<strong>إجابة صحيحة! 👏</strong> <br> ${currentGrammarQ.fb}`;
+                addXP(10);
+                gSolved++;
+            } else {
+                circle.classList.add('bg-red-500', 'border-red-500');
+                feedbackBox.className = "mt-4 p-4 rounded-lg arabic text-right text-lg border bg-red-50 text-red-800 border-red-300 block";
+                feedbackBox.innerHTML = `<strong>خطأ، تذكر القاعدة 💡</strong> <br> الإجابة الصحيحة هي: <span dir="ltr" class="font-bold ml-1 text-red-900">${currentGrammarQ.opts[currentGrammarQ.ans]}</span><br><hr class="my-2 border-red-200">${currentGrammarQ.fb}`;
+                grammarPool.push(currentGrammarQ);
+            }
+        }
+
+        function nextGrammarQ() {
+            loadGrammarQ();
+        }
+
+        // --- ADAPTIVE WRITING LOGIC ---
+        let writingPool = [
+            { prompt: "I cook dinner.", inst: "Rewrite using the adverb 'usually' correctly.", acc: ["i usually cook dinner"], fb: "يأتي ظرف التكرار (usually) قبل الفعل الأساسي (I usually cook dinner)." },
+            { prompt: "He knows how to paint.", inst: "Rewrite this sentence in the negative form.", acc: ["he doesn't know how to paint", "he does not know how to paint"], fb: "لنفي الجملة مع الفاعل المفرد نستخدم (doesn't know how to)." },
+            { prompt: "You go online once a week.", inst: "Form a question using 'How often'.", acc: ["how often do you go online?", "how often do you go online"], fb: "لتكوين السؤال عن التكرار نستخدم الصيغة: How often do you + الفعل الأساسي؟" },
+            { prompt: "She practices indoor climbing.", inst: "Rewrite using the frequency expression 'twice a week'.", acc: ["she practices indoor climbing twice a week", "she practices indoor climbing twice a week."], fb: "توضع تعبيرات التكرار (مثل twice a week) في نهاية الجملة." }
+        ];
+
+        let currentWritingT = null;
+        let wTotal = writingPool.length;
+        let wSolved = 0;
+
+        function loadWritingTask() {
+            const ui = document.getElementById('writing-ui');
+            ui.classList.remove('fade-in'); void ui.offsetWidth; ui.classList.add('fade-in');
+            
+            if(writingPool.length === 0) {
+                ui.innerHTML = `<h3 class="text-2xl font-bold text-green-600 text-center py-10">Writing Complete! 🏆</h3>`;
+                return;
+            }
+
+            currentWritingT = writingPool.shift(); 
+            
+            document.getElementById('w-progress').innerText = `Writing Progress: ${wSolved}/${wTotal}`;
+            document.getElementById('w-prompt').innerText = `"${currentWritingT.prompt}"`;
+            document.getElementById('w-instruction').innerText = `➡️ ${currentWritingT.inst}`;
+            document.getElementById('w-input').value = '';
+            document.getElementById('w-input').disabled = false;
+            
+            document.getElementById('w-feedback').classList.add('hidden');
+            document.getElementById('w-next-btn').classList.add('hidden');
+            document.getElementById('w-submit-btn').classList.remove('hidden');
+            setTimeout(() => document.getElementById('w-input').focus(), 100);
+        }
+
+        function cleanString(str) {
+            return str.toLowerCase().replace(/[.,!?]/g, '').trim().replace(/\s+/g, ' ');
+        }
+
+        function checkWriting() {
+            const inputVal = document.getElementById('w-input').value;
+            if(!inputVal) { alert("Please type an answer!"); return; }
+
+            document.getElementById('w-input').disabled = true;
+            document.getElementById('w-submit-btn').classList.add('hidden');
+            
+            const isCorrect = currentWritingT.acc.some(ans => cleanString(ans) === cleanString(inputVal));
+            const feedbackBox = document.getElementById('w-feedback');
+            const nextBtn = document.getElementById('w-next-btn');
+
+            feedbackBox.classList.remove('hidden');
+            nextBtn.classList.remove('hidden');
+
+            if (isCorrect) {
+                feedbackBox.className = "mt-4 p-4 rounded-lg arabic text-right text-lg border bg-green-50 text-green-800 border-green-300 block";
+                feedbackBox.innerHTML = `<strong>صياغة ممتازة! 🌟</strong> <br> ${currentWritingT.fb}`;
+                addXP(20);
+                wSolved++;
+            } else {
+                feedbackBox.className = "mt-4 p-4 rounded-lg arabic text-right text-lg border bg-red-50 text-red-800 border-red-300 block";
+                feedbackBox.innerHTML = `<strong>حاول مرة أخرى 💡</strong> <br> الحل الصحيح: <span dir="ltr" class="font-bold inline-block mx-2 text-red-900">${currentWritingT.acc[0]}</span><br><hr class="my-2 border-red-200">${currentWritingT.fb}`;
+                writingPool.push(currentWritingT);
+            }
+        }
+
+        function nextWritingTask() {
+            loadWritingTask();
+        }
+
+        // Initialize App
+        window.onload = () => {
+            loadVocabCardText(); 
+            loadGrammarQ();
+            loadWritingTask();
+        };
+
+        // Listen for Enter key on writing input
+        document.getElementById('w-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') { checkWriting(); }
+        });
+    </script>
+</body>
+</html>
